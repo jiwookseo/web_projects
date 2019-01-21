@@ -86,26 +86,6 @@ source code 중 **save2csv.py module**에 해당한다.
 
 
 
-* 데이터 수집 및 저장 code
-
-  ```python
-  k=kobisMovie(key)
-  
-  data=k.boxoffice(2019,1,13)
-  save_csv("boxoffice.csv",data)
-  
-  data=k.info(data)
-  save_csv("movie.csv",data)
-  
-  n=naverMovie(client,secret)
-  data=n.info(data)
-  save_csv("movie_naver.csv",data)
-  
-  n.down_images(data,"images/")
-  ```
-
-
-
 ## III. 데이터 수집 및 저장 과정 예시
 
 실제로 데이터를 수집하고 저장하는 과정 예시
@@ -173,7 +153,6 @@ source code 중 **test.py**에 해당된다.
      
 
      * 원본 이미지
-
        ![썸네일 이미지 예시](images/20010291_origin.jpg)
 
 
@@ -189,7 +168,7 @@ nav bar를 이용해 메인페이지와 boxoffice 페이지로 이동할 수있�
 
   ![main page](doc/0.PNG)
 
-
+  
 
 * search page
   : 검색 결과 페이지 예시, 보헤미안 랩소디 검색 결과
