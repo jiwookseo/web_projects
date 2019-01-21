@@ -165,10 +165,10 @@ source code 중 **test.py**에 해당된다.
   3. images 예시
 
      - 썸네일 이미지
+       
        ![썸네일 이미지 예시](images/20010291_thumb.jpg)
 
      
-
      - 원본 이미지
 
        ![썸네일 이미지 예시](images/20010291_origin.jpg)
