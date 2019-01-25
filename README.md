@@ -53,9 +53,15 @@ $tree
   이 때에, 페이지를 스크롤해 움직이더라도 fixed position으로 positioning 해준다.
 * viewport와 responsive tier를 사용해서 모든 layout이 디바이스의 너비를 꽉 채우도록한다.
 
+
+
 - layout page image
 
    ![sample image 1](static/sample/sample_img_0.PNG)
+
+   
+
+---
 
 
 
@@ -64,16 +70,19 @@ $tree
 `templates/1_layout.html` 에 해당한다.  
 
 * 손쉬운 Data 사용을 위해 flask app으로 만들어 jinja for문을 이용해 동적으로 제작한다.  
-
 * 영화별 이미지와 장르, 개봉일 등을 출력해주고, 해당하는 네이버 링크로 이동하는 버튼을 제작한다.
-
 * 영화별 평점을 jinja if문을 이용해 9점이상과 미만으로 나누어서 평점 출력 라벨의 색상을 변경해준다.
-
 * 디바이스 크기가 변경되어도 알맞게 출력되도록 responive tier를 이용해 반응형 웹페이지로 제작한다.
+
+
 
 * movie page image
 
   ![sample image 1](static/sample/sample_img_1.PNG)
+
+
+
+---
 
 
 
@@ -82,11 +91,12 @@ $tree
 ```templates/1_layout.html``` 에 해당한다.
 
 - 영화 리스트에서 이미지를 클릭하면 영화의 상세 정보를 보여주는 modal을 제작한다.
-
 - 영화별 고유 코드가 data에 없기 때문에, 해당하는 image 이름을 key로 사용하였다.  
   example modal ID :  `#movie-{{ item['images'] }}-modal`
-
 - 상세 정보에는 해당하는 영화의 img를 carousel로 슬라이드 해줄 수 있도록 한다.
+- 제목은 국문 (영문)으로 출력하고, 누적 관객수는 3자리 씩 comma로 끊어줘 가독성을 증진시킨다.
+
+
 
 - detail_view page image  ~~메라 짱짱~~ 
 
