@@ -55,7 +55,7 @@ $tree
 
 - layout page image
 
-   ![sample image 1](C:/Users/student/web/static/sample/sample_img_0.PNG)
+   ![sample image 1](static/sample/sample_img_0.PNG)
 
 
 
@@ -71,9 +71,9 @@ $tree
 
 * 디바이스 크기가 변경되어도 알맞게 출력되도록 responive tier를 이용해 반응형 웹페이지로 제작한다.
 
-* movie age image
+* movie page image
 
-  ![sample image 1](C:/Users/student/web/static/sample/sample_img_1.PNG)
+  ![sample image 1](static/sample/sample_img_1.PNG)
 
 
 
@@ -90,4 +90,5 @@ $tree
 
 - detail_view page image  ~~메라 짱짱~~ 
 
-  ![sample image 1](C:/Users/student/web/static/sample/sample_img_2.PNG)
+  ![sample image 1](static/sample/sample_img_2.PNG)
+
