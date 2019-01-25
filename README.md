@@ -1,4 +1,4 @@
-# Web project
+# Web Project
 
 [source code github repository](https://github.com/jiwookseo/web_project) (private)
 
