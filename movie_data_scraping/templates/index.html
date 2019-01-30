@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block title %} Main Page{% endblock %}
+{% block content %}
+    <div class="mt-5 display-3 font-weight-bold text-white d-flex justify-content-center">Search Movie</div>
+    <div class="container mb-5 text-white d-flex justify-content-center">
+        <form action="/search" method="GET">
+            <div class="px-2 pt-5 form-group d-flex flex-column">
+                <label class="mb-3" for="exampleInputQuery">Search Movie</label>
+                <div class="d-flex flex-row">
+                    <input type="text" class="mr-2 mb-2 px-2 py-2" id="query" name="q" placeholder="To search">
+                    <button type="submit" class="mb-2 btn btn-primary">Submit</button>
+                </div>    
+                <small id="search" class="form-text text-muted">search by kobis & naver</small>
+            </div>
+        </form>
+    </div>
+{% endblock %}

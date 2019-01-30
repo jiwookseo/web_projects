@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block title %} {{ q }}{% endblock %}
+{% block content %}
+    <div class="container bg-dark">
+        <div class="my-3 mt-5 text-white d-flex flex-row align-items-baseline">
+            <div class=" display-4 font-weight-bold mr-2"> Boxoffice </div>
+        </div>
+        <div class="row">
+        {% for c in cd %}
+            <div class="col-3 pt-4 mx-1 my-1 card bg-dark text-light">
+              <img class="card-img-top" src="{{ naver[c][3] }}" alt="{{ q }}" style="height: 25rem; object-fit: cover;">
+              <div class="card-body ">
+                <div class="card-title">{{ office[c][0] }}</div>
+                <a href="/search?q={{ office[c][0] }}" class="btn btn-primary">Detail Page</a>
+              </div>
+            </div>  
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}
