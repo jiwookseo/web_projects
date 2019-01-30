@@ -34,7 +34,7 @@ csv 데이터를 기반으로 영화 추천 서비스를 위한 동적 웹페이
 
 Riot Games API를 통한 op.gg와 닮은 League of Legend 전적 검색 사이트 구현
 
-- [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/fake-op.gg)
+- [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/fake_op.gg)
 
 
 
