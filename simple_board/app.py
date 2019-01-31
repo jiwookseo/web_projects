@@ -1,50 +1,59 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import csv
 import sqlite3
 app=Flask(__name__)
+DB_FILE='data/board.splite3'
+TABLE='articles'
+
+def query(method, table, *params):
+    c=sqlite3.connect(DB_FILE)
+    db=c.cursor()
+    check=True
+    method=method.lower()
+    if method=='select_all':
+        q='SELECT * FROM {}'.format(table)
+    elif method=='select_one':
+        q='SELECT * FROM {} WHERE id={}'.format(table,params[0])
+    elif method=='create':
+        q='INSERT INTO {} (title, content) VALUES ("{}","{}")'.format(table, *params)
+    elif method=='update':
+        q='UPDATE {} SET title="{}", content="{}" WHERE id="{}"'.format(table, *params)
+    elif method=='delete':
+        q='DELETE FROM {} WHERE id="{}"'.format(table, *params)
+    if method=='select_all' or method=='select_one':
+        check=False
+    db.execute(q)
+    if check:
+        c.commit()
+        c.close()
+        return None
+    else:
+        data=db.fetchall()
+        c.close()
+        return data
 
 @app.route('/')
 def index():
-    c=sqlite3.connect('data/board.splite3')
-    db=c.cursor()
-    query='SELECT * FROM articles'
-    db.execute(query)
-    data=db.fetchall()
-    c.close()
+    data=query('select_all',TABLE)
     return render_template('index.html',data=data)
 
-@app.route('/create', methods=["POST"])
-def create():
+@app.route('/submit', methods=["POST"])
+def submit():
     title=request.form.get("title")
     content=request.form.get("content")
-    c=sqlite3.connect('data/board.splite3')
-    db=c.cursor()
-    query='INSERT INTO articles (title, content) VALUES ("{}","{}")'.format(title, content)
-    db.execute(query)
-    c.commit()
-    c.close()
-    return render_template('create.html')
+    query('INSERT',TABLE,title,content)
+    return redirect('/')
     
-@app.route('/delete',methods=["GET"])
+@app.route('/delete',methods=["POST"])
 def delete():
-    key=request.args.get("id")
-    c=sqlite3.connect('data/board.splite3')
-    db=c.cursor()
-    query='DELETE FROM articles WHERE id="{}"'.format(key)
-    db.execute(query)
-    c.commit()
-    c.close()
-    return render_template('delete.html')
+    key=request.form.get("id")
+    query('DELETE',TABLE,key)
+    return redirect('/')
 
-@app.route('/edit',methods=["GET"])
+@app.route('/edit',methods=["POST"])
 def edit():
-    key=request.args.get("id")
-    c=sqlite3.connect('data/board.splite3')
-    db=c.cursor()
-    query='SELECT * FROM articles WHERE id="{}"'.format(key)
-    db.execute(query)
-    data=db.fetchall()
-    c.close()
+    key=request.form.get("id")
+    data=query('select_one',TABLE ,key)
     return render_template('edit.html',data=data)
 
 @app.route('/update',methods=["POST"])
@@ -52,10 +61,5 @@ def update():
     key=request.form.get("id")
     edit_content=request.form.get("content")
     edit_title=request.form.get("title")
-    c=sqlite3.connect('data/board.splite3')
-    db=c.cursor()
-    query='UPDATE articles SET title="{}", content="{}" WHERE id="{}"'.format(edit_title,edit_content,key)
-    db.execute(query)
-    c.commit()
-    c.close()
-    return render_template('update.html')
+    query('update',TABLE,edit_title,edit_content,key)
+    return redirect('/')

@@ -17,7 +17,7 @@
         </div>
         <div class="row">
             <div class="col-8 offset-2 mt-3">
-                <form action="/create" method="POST">
+                <form action="/submit" method="POST">
                     <div class="form-group">
                         <label>Title</label>
                         <input type="text" name="title" class="form-control" placeholder="Enter Title">
@@ -43,7 +43,8 @@
                         <th scope="col">#</th>
                         <th scope="col">Title</th>
                         <th scope="col">Content</th>
-                        <th scope="col">Func</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,10 +60,16 @@
                             {{row[2]}} 
                         </td>
                         <td>
-                            <div class="btn-group-sm" role="group">
-                                <a class="btn btn-secondary" href="/edit?id={{row[0]}}">Edit Record</a>
-                                <a class="btn btn-secondary" href="/delete?id={{row[0]}}">Delete</a>
-                            </div>
+                            <form action="/edit" method="POST">
+                                <input type="hidden" name="id" value="{{row[0]}}"/>
+                                <input class="btn-sm btn-secondary" type="submit" value="Edit Record"/>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/delete" method="POST">
+                                <input type="hidden" name="id" value="{{row[0]}}"/>
+                                <input class="btn-sm btn-secondary" type="submit" value="Delete"/>
+                            </form>
                         </td>
                     </tr>
                     {% endfor %}
