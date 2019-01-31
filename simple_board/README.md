@@ -14,7 +14,19 @@ Flask, Bootstrap을 이용한 Board Service 구현
 ## II. 구성
 
 ```bash
-$tree
+$ tree
+.
+|-- README.md
+|-- app.py
+|-- assets
+|   |-- img_0.PNG
+|   |-- img_1.PNG
+|   `-- img_2.PNG
+|-- data
+|   `-- board.splite3
+`-- templates
+    |-- edit.html
+    `-- index.html
 ```
 
 ## II. 스펙
