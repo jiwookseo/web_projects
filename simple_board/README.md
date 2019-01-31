@@ -27,6 +27,10 @@ SQLite3 DB를 이용한 게시글 관리
 
 * Record Delete 기능  
 
+* 모든 기능은 POST request 방식을 사용해 보안성을 높힌다.
+
+* CREATE, UPDATE, DELETE를 마친 후 main page로 redirect 해준다.
+
 
 ## III. 샘플이미지
 
@@ -37,8 +41,3 @@ SQLite3 DB를 이용한 게시글 관리
 * edit page :
 
     ![main_page_sample_img](assets/img_1.PNG)
-
-* submit, update, delete page :  
-문구를 제외한 화면 출력은 같다.
-
-    ![submit_page_sample_img](assets/img_2.PNG)
