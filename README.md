@@ -72,3 +72,14 @@ SQLite3 DB, Flask practice
 
 * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/simple_board)
 
+
+
+### 7. Simple Blog
+
+SQLite3 DB, Flask practice
+
+간단한 블로그 페이지 구현, 게시글 작성 및 수정, 삭제  
+게시글 상세 페이지, 날짜 기록 기능 탑재
+
+- [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/blog)
+
