@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block title %} {{ q }}{% endblock %}
+{% block content %}
+    <div class="container bg-dark">
+        <div class="my-3 mt-5 d-flex flex-row align-items-baseline">
+            <div class=" display-4 font-weight-bold mr-2"> {{ q }} </div> <h4 class="font-weight-bold"> {{ movie[1] }}</h4>
+        </div>
+        <div class="my-3 mt-5 d-flex flex-row align-items-start">
+            <div class="pt-4 mx-1 my-1 bg-dark text-light" style="width: 24rem;">
+                <img class="card-img-top" src="{{ naver[3] }}" alt="{{ q }}" style="height: 32rem; object-fit: cover;">
+                <div class="card-body ">
+                <a href="{{ naver[1] }}" class="btn btn-primary">Go NaverMovie</a>
+                </div>
+            </div>
+            <h5 class="px-5 py-5">
+                <div> 개봉일 : {{ office[2][:4] }}-{{ office[2][4:6] }}-{{ office[2][6:8] }}</div>
+                <div> 관객수 : {% if office[1]|length >9 %}{{ office[1][-12:-9] }},{% endif %}{% if office[1]|length >6 %}{{ office[1][-9:-6] }},{% endif %}{% if office[1]|length >3 %}{{ office[1][-6:-3] }},{% endif %}{{ office[1][-3:] }}명</div>
+                <div> 관객평 : {{ naver[2] }} / 10점</div>
+            </h5>
+        </div>
+{% endblock %}

@@ -1,0 +1,118 @@
+body {
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    color: #181818;
+    letter-spacing: -0.03em;
+    height: 10000px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0 0;
+}
+
+/* nav bar */
+.navbar{
+    min-height: 5vh;
+    min-width: 100vw;
+    padding-right: 25px;
+    opacity: 0.93;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.collapse.navbar-collapse {
+    justify-content: flex-end;
+}
+
+.navbar-brand, .footer-brand {
+    display: flex;
+    align-items: center;
+    font-family: 'East Sea Dokdo', cursive;
+    font-size: 25px;
+    font-weight: 300;
+    line-height: 1;
+}
+
+
+.nav-item{
+    font-family: 'Yeon Sung', cursive;
+    font-size: 15px;
+    line-height: 1.8;
+    letter-spacing: 2px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.bg-faded {
+    background-color: #fff;
+    color: inherit;
+}
+
+/* header */
+#header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 350px;
+    background-image: url('https://www.dailydot.com/wp-content/uploads/575/9f/54e3c59cfbb69403.png');
+    background-size: cover;
+    background-position: center center;
+    color: #fff;
+    text-shadow: 0 0 10px #181818;
+}
+
+.header-title {
+    padding-top: 20px;
+    font-family: 'East Sea Dokdo', cursive;
+    font-weight: 300;
+    font-size: 70px;
+    line-height: 1.15;
+}
+
+/* footer */
+#footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 3rem;
+    min-height: 50px;
+    min-width: 100vw;
+    background-color: #181818;
+    font-family: "Montserrat", sans-serif;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#footer .container {
+    min-width: 95vw;
+}
+
+.footer-title {
+    font-size: 16px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+}
+
+.footer-btn{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.footer-btn .btn{
+    min-height: 0;
+    margin-right: 5px;
+    border-radius: 15px;
+}
+
+.footer-btn .btn{
+    min-height: 0;
+    margin-right: 5px;
+    border-radius: 15px;
+}

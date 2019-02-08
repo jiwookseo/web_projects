@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}Articles{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row my-3">
+            <h2>{{ article.title }} <small>Article #{{ article.id }}</small></h2>
+        </div>
+        <div class="row d-flex justify-content-end">
+            <h4>{{ article.author }}</h4>
+        </div>
+        <div class="row d-flex justify-content-end">
+            <h5>{{ article.created_at }}</h5>
+        </div>
+        <div class="row bg-light my-3 px-5 py-5">
+            {% for line in article.content.splitlines() %}
+                {{line}}<br>
+            {% endfor %}
+        </div>
+        <div class="row d-flex justify-content-end">
+            <a href="/articles" class="btn btn-primary mr-2">list</a>
+            <a href="/articles/{{article.id}}/edit" class="btn btn-primary mr-2">edit</a>
+            <a href="/articles/{{article.id}}/delete" class="btn btn-primary">delete</a>
+        </div>
+    </div>
+{% endblock %}
