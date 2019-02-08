@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}Main Page{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .alert{
+            padding:0 3px;
+            margin:0 0;
+        }
+        h5{
+            padding:0 0;
+            margin:0 0;
+            margin-right:5px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <!-- header -->
+    <section id="header">
+            <div class="container">
+                <h2 class="header-title">
+                    영화 정보를<br>
+                    입력해주세요. 제발.
+                </h2>
+            </div>
+        </section>
+    <!-- header end-->
+    <div class="container mt-5">
+        <div class="row my-3">
+            <h1>Movies</h1>
+        </div>
+        <div class="row d-flex justify-content-end mr-2 mb-4">
+            <div class="" style="padding:0!important;">
+                <form action="/movies" method="GET">
+                    <div class="input-group">
+                        <select class="custom-select" id="inputGroupSelect04" name="sort" aria-label="Example select with button addon">
+                            <option selected>Sort by...</option>
+                            <option value="1">Boxoffice (Default)</option>
+                            <option value="2">Open Date</option>
+                            <option value="3">Audience</option>
+                            <option value="4">User Rate</option>
+                        </select>
+                        <div class="input-group-append">
+                            <input class="btn btn-outline-secondary" type="submit" value="Sort">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="ml-3" style="padding:0!important;">
+                <a href="/movies/new" class="btn btn-outline-secondary"> Movie Register </a>
+            </div>
+        </div>
+        {% for movie in movies %}
+        <div class="row mx-2">
+            <a href="/movies/{{movie.id}}" style="color:black; width:100%">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex">
+                        <h5>{{ movie.title }}</h5>
+                        {% if movie.score>=4 %}
+                        <div class="alert alert-primary ">{{ movie.score }}
+                        {% else %}
+                        <div class="alert alert-dark ">{{ movie.score }}
+                        {% endif %}
+                        </div>
+                    </div>
+                    <div>
+                        {{ movie.open_date.strftime('%Y-%m-%d') }}
+                    </div>
+                </div>
+            </a>
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+{% endblock %}

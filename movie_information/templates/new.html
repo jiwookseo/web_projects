@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}New Movie{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style>
+        input[type="text"], input[type="number"], input[type="date"]{
+           width: 305px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="pdvh container mt-5">
+        <div class="row my-3">
+            <h2>
+                New Movie
+            </h2>
+        </div>
+        <div class="row">
+            <form action="/movies/create" method="POST">
+                <table class="table mt-3">
+                    <thead>
+                        <tr>
+                            <th scope="col">Type</th>
+                            <th scope="col">Content</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Title</th>
+                            <td><input type="text" name="title" placeholder="Enter Title" required/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Title Eng</th>
+                            <td><input type="text" name="title_en" placeholder="Enter Title Eng" required/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Audience</th>
+                            <td><input type="number" name="audience" placeholder="Enter Audience"/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Open Date</th>
+                            <td><input type="date" name="open_date" required/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Genre</th>
+                            <td><input type="text" name="genre" placeholder="Enter Genre" required/></td>
+                        </tr>
+                        <tr>
+                        <tr>
+                            <th scope="row">Watch Grade</th>
+                            <td><input type="text" name="watch_grade" placeholder="Enter Watch Grade" required/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Score</th>
+                            <td><input type="number" name="score" placeholder="Enter Score" required min="0" max="5" step='0.5'/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Poster URL</th>
+                            <td><input type="text" name="poster_url" placeholder="Enter Poster URL" required/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td><textarea name="description" cols="40" rows="8" placeholder="Enter Description" class="mt-1" required></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-end">
+                    <input type="submit" value="Submit" class="btn btn-outline-secondary mr-3"/>
+                </div>
+            </form>  
+        </div>
+    </div>
+{% endblock %}

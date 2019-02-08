@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}{{movie.title}}{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <div class="pdvh container my-5">
+        <div class="row my-3">
+            <h2>{{movie.title}}<small class="ml-3">{{movie.title_en}}</small></h2>
+        </div>
+        <div class="row mb-3">
+            <div>
+                <img src="{{movie.poster_url}}" alt="{{movie.title}} poster" style="width:50rem; height:auto;"></img>
+            </div>
+        </div>
+        <div class="row">
+            관람객 : 
+            {% if (movie.audience|string)|length>9 %}
+            {{(movie.audience|string)[:-9]}},{{(movie.audience|string)[-9:-6]}},{{(movie.audience|string)[-6:-3]}},{{(movie.audience|string)[-3:]}} 명
+            {% elif (movie.audience|string)|length>6 %}
+            {{(movie.audience|string)[:-6]}},{{(movie.audience|string)[-6:-3]}},{{(movie.audience|string)[-3:]}} 명
+            {% elif (movie.audience|string)|length>3 %}
+            {{(movie.audience|string)[:-3]}},{{(movie.audience|string)[-3:]}} 명
+            {% else %}
+            {{movie.audience}} 명
+            {% endif %}
+        </div>
+        <div class="row">
+            개봉일 : {{movie.open_date.strftime('%Y-%m-%d')}}
+        </div>
+        <div class="row">
+            장르 : {{movie.genre}}
+        </div>
+        <div class="row">
+            관람등급 : {{movie.watch_grade}}
+        </div>
+        <div class="row">
+            평점 : {{movie.score}} / 5.0
+        </div>
+        <div class="row mt-3 col-9" style="padding-left:0!important;">
+            {% for line in movie.description.splitlines() %}
+                {{line}}<br>
+            {% endfor %}
+        </div>
+        <div class="row col-9 mt-3 d-flex justify-content-end">
+            <a href="/movies" class="btn btn-outline-secondary mr-2">list</a>
+            <a href="/movies/{{movie.id}}/edit" class="btn btn-outline-secondary mr-2">edit</a>
+            <a href="/movies/{{movie.id}}/delete" class="btn btn-outline-secondary">delete</a>
+        </div>
+    </div>
+{% endblock %}

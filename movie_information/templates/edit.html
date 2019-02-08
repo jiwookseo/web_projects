@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}Edit Movie{% endblock %}
+{% block head %}
+    {{ super() }}
+    <style>
+        input[type="text"], input[type="number"], input[type="date"]{
+           width: 305px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="pdvh container mt-5">
+        <div class="row my-3">
+            <h2>
+                Edit Movie
+            </h2>
+        </div>
+        <div class="row">
+            <form action="/movies/{{movie.id}}/update" method="POST">
+                <table class="table mt-3">
+                    <thead>
+                        <tr>
+                            <th scope="col">Type</th>
+                            <th scope="col">Content</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Title</th>
+                            <td><input type="text" name="title" value="{{movie.title}}" required readonly/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Title Eng</th>
+                            <td><input type="text" name="title_en" value="{{movie.title_en}}" required/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Audience</th>
+                            <td><input type="number" name="audience" value="{{movie.audience}}"/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Open Date</th>
+                            <td><input type="date" name="open_date" value="{{movie.open_date.strftime('%Y-%m-%d')}}" required/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Genre</th>
+                            <td><input type="text" name="genre" value="{{movie.genre}}" required/></td>
+                        </tr>
+                        <tr>
+                        <tr>
+                            <th scope="row">Watch Grade</th>
+                            <td><input type="text" name="watch_grade" value="{{movie.watch_grade}}" required/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Score</th>
+                            <td><input type="number" name="score" value="{{movie.score}}" required min="0" max="5" step='0.5'/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Poster URL</th>
+                            <td><input type="text" name="poster_url" value="{{movie.poster_url}}" required/></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td><textarea name="description" cols="40" rows="8" class="mt-1" required>{{movie.description}}</textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-end">
+                    <input type="submit" value="Submit" class="btn btn-outline-secondary mr-3"/>
+                </div>
+            </form>  
+        </div>
+    </div>
+{% endblock %}
