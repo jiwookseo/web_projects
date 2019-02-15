@@ -101,3 +101,12 @@ SQLite3 DB, Flask practice
 
   * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/blog_by_orm)
 
+
+
+### 7. Simple Board
+
+Django template, Bootstrap, CSS practice 
+
+Django Web Framework를 이용한 templates 제작
+
+- [Go to repository](https://github.com/jiwookseo/web_projects/tree/master/django_templates)
