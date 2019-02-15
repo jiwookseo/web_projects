@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %} Sign Up {% endblock %}
+{% block content %}
+<div class="container content">
+    <div class="row">
+        <div class="col-6 mt-5 pl-5">
+            <img src="https://item.kakaocdn.net/do/a08dff9047d60d6148ac9a3c19ca4ca9f43ad912ad8dd55b04db6a64cddaf76d" style="width:90%;height:auto"></img>
+        </div>
+        <div class="col-6">
+            <div class="row d-flex justify-content-center pt-5">
+                <h2>Sign Up</h2>
+            </div>
+            <form class="mt-4">
+                <div class="form-group">
+                    <label>Email address</label>
+                    <input type="email" class="form-control" name="email" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="Enter name">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="text" class="form-control" name="name" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label>Password Confirm</label>
+                    <input type="text" class="form-control" name="name" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

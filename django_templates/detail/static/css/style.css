@@ -1,0 +1,74 @@
+body {
+    min-height: 1000px;
+}
+
+nav {
+    height:5vh;
+    width:100vw;
+    padding-right:25px!important;
+    position: fixed!important;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+header {
+    background-position: center center;
+    height: 350px;
+    max-width: 100vw;
+    margin-top: 5vh;
+}
+
+#index{
+    background-image: url('https://mblogthumb-phinf.pstatic.net/MjAxODA0MjlfMTQ3/MDAxNTI1MDA2NzA0NjYz.Tbqg87E1AP8JjyjLVbQbu6pPdB1VYpEr6ylfvPXYnk8g.4SMXIKmFCv9GboykDB5DJWiBeavV1MnYoFe32w9QZOcg.GIF.adorable9191/746EA7AB-6E37-4DD4-95DA-BA201E61E372-22050-00000C7A1E006FE2_file.GIF?type=w800');
+}
+
+#notfound{
+    background-image: url('https://i.pinimg.com/originals/59/61/f9/5961f98d1e7ffedb64496856133fae57.gif');
+}
+
+header h1{
+    color: #181818;
+    font-weight:700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 50px;
+    min-width: 100vw;
+    color: #181818;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.content{
+    margin-top:5vh;
+}
+
+.mycard{
+    position: fixed;
+    width: 20vw;
+    top: 10vh;
+    left: 10vw;
+    z-index: 0;
+}
+
+.mypage{
+    position: absolute;
+    width: 50vw;
+    top: 10vh;
+    right: 10vw;
+    z-index: 0;
+}
+
+h5 small{
+    color: #727272;
+}

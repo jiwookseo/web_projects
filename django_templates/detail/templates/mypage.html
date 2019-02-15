@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %} mypage {% endblock %}
+{% block content %}
+{% load static %}
+<div class="container content pt-4">
+    <div class="mycard">
+        <div class="card mx-3" style="width: 90%;">
+            <img class="card-img-top rounded-circle py-2 px-2" src="{% static 'image/mypage.jpg' %}" alt="image/mypage.jpg">
+            <div class="card-body">
+                <h5 class="card-title">보노보노 ぼのぼの<br><small>bonobono@ssafy.com</small></h5>
+                <p class="card-content">해달 보노보노, 다람쥐 포로리, 라쿤 너부리의 숲속 생활을 그린 이가라시 미키오의 만화와 이를 원작으로 하는 애니메이션.</p>
+                <a href="https://namu.wiki/w/%EB%B3%B4%EB%85%B8%EB%B3%B4%EB%85%B8" class="btn btn-primary">Go to Wiki</a>
+            </div>
+        </div>
+    </div>
+    <div class="mypage bg-light">
+        {% for item in articles %}
+        <div class="card mx-3 my-3" style="width: 96%;">
+            <img class="card-img-top" src="{{ item.image }}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ item.title }}</h5>
+                <p class="card-text">{{ item.content }}</p>
+                <a href="{{ item.url }}" class="btn btn-primary">Go to Wiki</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
