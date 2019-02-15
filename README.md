@@ -44,7 +44,7 @@
 
   * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/movie_information)
 
-
+---
 
 ### 2. Fake op.gg
 
@@ -54,7 +54,7 @@ Riot Games API를 통한 op.gg와 닮은 League of Legend 전적 검색 사이�
 
 - [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/fake_op.gg)
 
-
+---
 
 ### 3. E-commerce
 
@@ -64,7 +64,7 @@ e-commerce 메인 페이지 구현
 
 - [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/e-commerce)
 
-
+---
 
 ### 4. Giphy
 
@@ -74,7 +74,7 @@ Giphy API를 이용한 GIF 검색 서비스, 스티커 트랜드 순위를 보�
 
 - [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/giphy)
 
-
+---
 
 ### 5. Simple Board
 
@@ -84,7 +84,7 @@ SQLite3 DB, Flask practice
 
 * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/simple_board)
 
-
+---
 
 ### 6. Simple Blog
 
@@ -101,7 +101,7 @@ SQLite3 DB, Flask practice
 
   * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/blog_by_orm)
 
-
+---
 
 ### 7. Simple Board
 
