@@ -44,6 +44,16 @@
 
   * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/movie_information)
 
+
+
+- Movie by django
+
+  django practice
+
+  django web framework를 통한 웹페이지 구현
+
+  - [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/movie_django)
+
 ---
 
 ### 2. Fake op.gg
