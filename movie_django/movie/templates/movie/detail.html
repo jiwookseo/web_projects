@@ -1,0 +1,15 @@
+{% extends 'movie/base.html' %}
+{% block title %}detail : {{movie.title}}{% endblock%}
+{% block content %}
+<h3 class="my-5">{{movie.title}} detail view</h3>
+<p>관람객수 : {{movie.audience}}</p>
+<p>장르 : {{movie.genre}}</p>
+<p>유저평점 : {{movie.score}}</p>
+<p><img src="{{movie.poster_url}}" style="width:50%;height:auto;"></img></p>
+<p>{% for line in movie.description.splitlines %}
+    {{line}}<br>
+{% endfor %}</p>
+<a href="{% url 'index' %}"> 목록 </a>
+<a href="{% url 'edit' movie.id %}"> 수정 </a>
+<a href="{% url 'delete' movie.id %}"> 삭제 </a>
+{% endblock %}

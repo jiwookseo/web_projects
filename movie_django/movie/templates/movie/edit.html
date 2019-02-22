@@ -1,0 +1,33 @@
+{% extends 'movie/base.html' %}
+{% block title %}edit : {{movie.title}}{% endblock %}
+{% block content %}
+<h3 class="my-5">{{movie.title}} edit data</h3>
+<form action="{% url 'update' movie.id%}" method="POST">
+    <div class="form-group">
+        <label>title</label>
+        <input type="text" class="form-control" name="title" value="{{movie.title}}"/>
+    </div>
+    <div class="form-group">
+        <label>audience</label>
+        <input type="text" class="form-control" name="audience" value="{{movie.audience}}"/>
+    </div>
+    <div class="form-group">
+        <label>genre</label>
+        <input type="text" class="form-control" name="genre" value="{{movie.genre}}"/>
+    </div>
+    <div class="form-group">
+        <label>score</label>
+        <input type="text" class="form-control" name="score" value="{{movie.score}}"/>
+    </div>
+    <div class="form-group">
+        <label>poster_url</label>
+        <input type="text" class="form-control" name="poster_url" value="{{movie.poster_url}}"/>
+    </div>
+    <div class="form-group">
+        <label>description</label>
+        <input type="text" class="form-control" name="description" value="{{movie.description}}"/>
+    </div>
+    {% csrf_token %}
+    <input type="submit" value="Submit"/>
+</form>
+{% endblock %}
