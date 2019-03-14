@@ -1,0 +1,37 @@
+<header>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row justify-content-center">
+            <!-- icon select tag -->
+            <div class="col-auto my-1">
+                <label for="icon" class="sr-only">icon</label>
+                <select class="custom-select mr-sm-2" id="icon" name="icon">
+                    <option value="fas fa-question">?</option>
+                    <option value="far fa-smile">:)</option>
+                    <option value="far fa-angry">:(</option>
+                    <option value="far fa-smile-wink">;)</option>
+                    <option value="fab fa-angrycreative">:X</option>
+                </select>
+            </div>
+            <!-- content input tag -->
+            <div class="col-sm-6 my-1">
+                <label for="content" class="sr-only">Content</label>
+                <input type="text" class="form-control" id="content" name="content" placeholder="Enter content">
+            </div>
+            <!-- image file input tag -->
+            <div class="col-sm-4 my-1 input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Upload img</span>
+                </div>
+                <div class="custom-file">
+                    <label for="image" class="custom-file-label">Select image</label>
+                    <input type="file" id="image" name="image" class="custom-file-input" accept="image/*">
+                </div>
+            </div>
+            <!-- submit -->
+            <div class="col-auto my-1">
+                <button type="submit" class="btn btn-outline-dark">Submit</button>
+            </div>
+        </div>
+    </form>
+</header>

@@ -120,3 +120,13 @@ Django template, Bootstrap, CSS practice
 Django Web Framework를 이용한 templates 제작
 
 - [Go to repository](https://github.com/jiwookseo/web_projects/tree/master/django_templates)
+
+---
+
+### 8. Django Practice
+
+Django practice
+
+Django Web Framework를 이용한 board app, SNS app 제작
+
+* [Go to repository](https://github.com/jiwookseo/web_projects/tree/master/django_practice)

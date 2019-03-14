@@ -1,0 +1,56 @@
+{% extends 'sns/base.html' %}
+{% block title %}#{{ posting.id }} {{ posting.title }}{% endblock %}
+{% block content %}
+    <h2>#{{ posting.id }}
+        <small>{{ posting.created_at }}</small>
+    </h2>
+    <div class="row mt-3">
+        <!-- Posting Card -->
+        <div class="col-12 col-md-6">
+            <div class="card mb-1">
+                {% if posting.image %}
+                    <img class="card-img-top"
+                         src="{{ posting.image.url }}"
+                         alt="{{ posting.image }}">
+                {% else %}
+                    <img class="card-img-top"
+                         src="https://picsum.photos/600/800/?random"
+                         alt="random image">
+                {% endif %}
+                <div class="card-body">
+                    <i class="{{ posting.icon }}"></i>
+                    <hr>
+                    <p class="card-text">
+                        {{ posting.content }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Comment Card -->
+        <div class="col-12 col-md-6">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <form action="{% url 'sns:create_comment' posting.id %}" method="POST">
+                        {% csrf_token %}
+                        <label for="content">Leave Comment</label>
+                        <input type="text" name="content" id="content" class="form-control" autofocus>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                        {% if comments %}
+                            {% for comment in comments %}
+                                <li class="list-group-item">{{ comment.content }}</li>
+                            {% endfor %}
+                        {% else %}
+                            <li class="list-group-item">No comments yet... :(</li>
+                        {% endif %}
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block is_detail %}active{% endblock %}

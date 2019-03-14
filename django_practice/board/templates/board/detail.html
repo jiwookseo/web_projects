@@ -1,0 +1,22 @@
+{% extends 'board/base.html' %}
+{% block title %} #{{ article.id }} {{ article.title }} {% endblock %}
+{% block content %}
+    #{{ article.id }} {{ article.title }}
+    {{ article.content }}<br>
+    <a href="{% url 'board:list' %}">
+        <button>list</button></a><br>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">delete</button>
+    </form>
+    <a href="{% url 'board:update' article.id %}">
+        <button>edit</button>
+    </a>
+    <hr>
+    <form style="display: inline;" method="POST">{% csrf_token %}
+        <button type="submit">like</button>
+    </form>
+    {% if article.like == 0 %}♡{% else %}♥{% endif %}
+    {{ article.like }}<br>
+    {% include 'board/_comment.html' %}
+{% endblock %}

@@ -1,0 +1,22 @@
+<div id="commentUI">
+    <div id="commentForm">
+        <form action="{% url 'board:comment_create' article.id %}" method="POST">
+            {% csrf_token %}
+            <label for="comment"> comment: </label>
+            <input type="text" id="content" name="content" placeholder="Hit Enter" autofocus>
+        </form>
+    </div>
+    {% if comments %}
+        <ul>
+            {% for comment in comments %}
+                <div>
+                    {{ comment.content }}
+                    <form style="display: inline;" action="{% url 'board:comment_delete' article.id comment.id %}"
+                          method="POST">{% csrf_token %}
+                        <button>X</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>

@@ -1,0 +1,16 @@
+{% extends 'board/base.html' %}
+{% block title %} List {% endblock %}
+{% block content %}
+    <h1>Article List</h1>
+    <a href="{% url 'board:new' %}">new</a>
+    {% if articles %}
+        <table>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.title }}</td>
+                    <td><a href="{% url 'board:detail' article.id %}">{{ article.content }}</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

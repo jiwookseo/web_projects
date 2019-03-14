@@ -1,0 +1,12 @@
+{% extends 'board/base.html' %}
+{% block title %} New Article {% endblock %}\
+{% block content %}
+    <form method="POST">
+        title = <input type="text" name="title">
+        <br>
+        content = <input type="text" name="content">
+        <br>
+        {% csrf_token %}
+        <input type="submit">
+    </form>
+{% endblock %}
