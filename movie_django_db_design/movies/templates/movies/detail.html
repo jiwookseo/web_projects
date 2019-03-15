@@ -1,0 +1,85 @@
+{% extends 'movies/base.html' %}
+{% block title %}
+    {{ movie.title }}
+{% endblock %}
+{% block content %}
+    <h2>{{ movie.title }}</h2>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <!-- movie detail part -->
+            <div class="card my-4">
+                <img src="{{ movie.poster_url }}" class="card-img-top" alt="{{ movie.title }} poster">
+                <div class="card-body">
+                    <p class="card-text">장르 : {{ movie.genre.name }}</p>
+                    <p class="card-text">관람객수 : {{ movie.audience }} 명</p>
+                    <p class="card-text">{{ movie.description|linebreaks }}</p>
+                    <!-- movie link part -->
+                    <div class="d-flex justify-content-end">
+                        <a href="{% url 'movies:movie_list' %}" class="btn btn-outline-dark mr-2">list</a>
+                        <a href="{% url 'movies:movie_update' movie.id %}" class="btn btn-outline-dark mr-2">update</a>
+                        <form action="{% url 'movies:movie_delete' movie.id %}" method="POST">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-outline-dark" value="delete">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- score part -->
+        <div class="col-12 col-md-6">
+            <div class="card my-4">
+                <!-- score form part -->
+                <div class="card-body">
+                    <form action="{% url 'movies:score_new' movie.id %}" method="POST"
+                          class="form-row d-flex justify-content-between px-2">
+                        {% csrf_token %}
+                        <div class="from-group">
+                            <label for="score"> Enter your score </label>
+                            <input type="number" id="score" name="score" class="form-control" placeholder="Score"
+                                   min="0" max="10" step="1">
+                        </div>
+                        <div class="from-group">
+                            <label for="content"> and comment </label>
+                            <input type="text" id="content" name="content" class="form-control" placeholder="Comment">
+                        </div>
+                        <div class="from-group">
+                            <label for="submit" class=""> submit </label>
+                            <input type="submit" id="submit" value="submit" class="form-control btn btn-outline-dark">
+                        </div>
+                    </form>
+                </div>
+                <!-- score set part -->
+                {% if movie.score_set.all %}
+                    <div class="mx-4">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">score</th>
+                                <th scope="col">comment</th>
+                                <th scope="col">del</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for score in movie.score_set.all reversed %}
+                                <tr>
+                                    <td>{{ score.score }}</td>
+                                    <td>{{ score.content }}</td>
+                                    <td>
+                                        <form action="{% url 'movies:score_delete' movie.id score.id %}" method="POST">
+                                            {% csrf_token %}
+                                            <input type="submit" class="btn btn-outline-dark" value="delete">
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+    </div>
+{% endblock %}
