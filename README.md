@@ -7,7 +7,8 @@
 ## I. 목표
 
 + 웹 서비스 구현
-+ Flask, C9을 통한 실제 사용가능한 웹페이지 제작
++ ~~Flask, C9을 통한 실제 사용가능한 웹페이지 제작~~
++ Django Web Framework 마스터
 + CSS / Bootstrap 연습
 
 
@@ -22,7 +23,7 @@
 
   네이버 영화 API와 영화진흥위원회 API를 사용한 데이터 수집 및 가공 / 영화 검색 및 박스오피스 기능 탑재  
 
-  * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/movie_data_scraping)
+  * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/movie_data_scraping)
 
   
 
@@ -32,7 +33,7 @@
 
   csv 데이터를 기반으로 영화 추천 서비스를 위한 동적 웹페이지 구현
 
-  - [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/movie_recommendation)
+  - [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/movie_recommendation)
 
   
 
@@ -42,7 +43,7 @@
 
   ORM을 통한 DB관리, 영화 정보 생성, 수정, 삭제, 출력, 정렬 서비스를 위한 동적 웹페이지 구현
 
-  * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/movie_information)
+  * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/movie_information)
 
 
 
@@ -52,7 +53,17 @@
 
   django web framework를 통한 웹페이지 구현
 
-  - [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/movie_django)
+  - [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Django_App/movie_django)
+
+  
+
+- Movie DB design by django
+
+  django practice
+
+  django web framework를 통한 1:N DB design 및 웹페이지 구현
+
+  - [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Django_App/movie_django_db_design)
 
 ---
 
@@ -62,7 +73,7 @@ API, JSON data practice
 
 Riot Games API를 통한 op.gg와 닮은 League of Legend 전적 검색 사이트 구현
 
-- [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/fake_op.gg)
+- [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/fake_op.gg)
 
 ---
 
@@ -72,7 +83,7 @@ CSS, Bootstrap practice
 
 e-commerce 메인 페이지 구현
 
-- [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/e-commerce)
+- [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/e-commerce)
 
 ---
 
@@ -82,51 +93,51 @@ API, Bootstrap practice
 
 Giphy API를 이용한 GIF 검색 서비스, 스티커 트랜드 순위를 보여주는 기능 탑재
 
-- [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/giphy)
+- [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/giphy)
 
 ---
 
 ### 5. Simple Board
 
-SQLite3 DB, Flask practice 
+* Flask Version
+  * SQLite3 DB, Flask practice 
 
-간단한 게시판 페이지 구현, 게시글 작성 및 수정, 삭제 기능 탑재
+    간단한 게시판 페이지 구현, 게시글 작성 및 수정, 삭제 기능 탑재
 
-* [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/simple_board)
+    * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/simple_board)
 
----
+    
 
-### 6. Simple Blog
+  * SQLite3 DB, Flask practice 
 
-* SQLite3 DB, Flask practice  
-  간단한 블로그 페이지 구현, 게시글 작성 및 수정, 삭제  
-  게시글 상세 페이지, 날짜 기록 기능 탑재
+    간단한 블로그 페이지 구현, 게시글 작성 및 수정, 삭제 
 
-  * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/blog)
+    게시글 상세 페이지, 날짜 기록 기능 탑재
 
-  
+    - [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/blog)
 
-* Flask-SQLAlchemy ORM practice   
-  위와 동일한 기능의 블로그를 ORM으로 제작.  
+    
 
-  * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/blog_by_orm)
+  * Flask-SQLAlchemy ORM practice   
 
----
+    위와 동일한 기능의 블로그를 ORM으로 제작.  
 
-### 7. Simple Board
+    * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/blog_by_orm)
 
-Django template, Bootstrap, CSS practice 
 
-Django Web Framework를 이용한 templates 제작
 
-- [Go to repository](https://github.com/jiwookseo/web_projects/tree/master/django_templates)
+* Django Version
 
----
+  * Django template, Bootstrap, CSS practice 
 
-### 8. Django Practice
+    Django Web Framework를 이용한 templates 제작
 
-Django practice
+    - [Go to repository](https://github.com/jiwookseo/web_projects/tree/master/Django_App/django_templates)
 
-Django Web Framework를 이용한 board app, SNS app 제작
+    
 
-* [Go to repository](https://github.com/jiwookseo/web_projects/tree/master/django_practice)
+  * Django practice
+
+    Django Web Framework를 이용한 board app, SNS app 제작
+
+    - [Go to repository](https://github.com/jiwookseo/web_projects/tree/master/Django_App/django_practice)
