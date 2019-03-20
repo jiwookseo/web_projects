@@ -141,3 +141,16 @@ Giphy API를 이용한 GIF 검색 서비스, 스티커 트랜드 순위를 보�
     Django Web Framework를 이용한 board app, SNS app 제작
 
     - [Go to repository](https://github.com/jiwookseo/web_projects/tree/master/Django_App/django_practice)
+
+---
+
+### 6. Todo App
+
+Django practice
+
+django를 이용한 login, authentication, authorization 기능 구현
+
+1:N relation database 를 이용한 `User` - `Todo` DB 및 Todo App 구현
+
+* [Go to repository](https://github.com/jiwookseo/web_projects/tree/master/Django_App/todo)
+
