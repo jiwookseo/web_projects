@@ -1,0 +1,8 @@
+{% extends 'todos/base.html' %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+    <h1> 회원정보 </h1>
+    <p>이름 : {{ user.first_name }}  {{ user.last_name }}</p>
+    <p>이메일 : {{ user.email }}</p>
+    <p>아이디 : {{ user.username }}</p>
+{% endblock %}
