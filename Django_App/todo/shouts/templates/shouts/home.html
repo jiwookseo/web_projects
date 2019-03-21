@@ -1,0 +1,32 @@
+{% extends 'todos/base.html' %}
+{% block title %}Help{% endblock %}
+{% block content %}
+    <h1 class="d-flex justify-content-center">Help</h1>
+    <div class="col-md-6 offset-md-3">
+        <form class="mt-5" method="POST">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <div class="d-flex justify-content-end">
+              <input type="submit" value="Submit" class='btn btn-outline-dark'/>
+            </div>
+        </form>
+    </div>
+    {% if user.shout_set.all %}
+    <div class="list-group mt-4">
+      {% for shout in user.shout_set.all reversed %}
+        <div class="list-group-item list-group-item list-group-item-action d-flex align-items-center col-md-6 offset-md-3">
+          <span>
+            {{ shout.title }}
+          </span>
+          <a href="{% url 'shouts:edit' shout.id %}" class="btn btn-ouline-light ml-auto"><span><i class="fas fa-edit"></i></span></a>
+          <form action="{% url 'shouts:delete' shout.id %}" method="POST" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-ouline-light">
+              <span><i class="fas fa-times"></i></span>
+            </button>
+          </form>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endblock %}

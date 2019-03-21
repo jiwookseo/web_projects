@@ -1,0 +1,10 @@
+{% extends 'todos/base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+  <h1>Edit Todo</h1>
+  <form method="POST" class="form-inline mt-5">
+    {% csrf_token %}
+    <input type="text" name="content" class='form-control col-9 col-md-10 col-lg-11' value="{{ todo.content }}"/>
+    <input type="submit" value="Submit" class='btn btn-outline-dark ml-auto'/>
+  </form>
+{% endblock %}

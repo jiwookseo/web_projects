@@ -1,0 +1,14 @@
+{% extends 'todos/base.html' %}
+{% block title %}Help{% endblock %}
+{% block content %}
+    <h1 class="d-flex justify-content-center">Edit Shout</h1>
+    <div class="col-md-6 offset-md-3">
+        <form class="mt-5" method="POST">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <div class="d-flex justify-content-end">
+              <input type="submit" value="Submit" class='btn btn-outline-dark'/>
+            </div>
+        </form>
+    </div>
+{% endblock %}
