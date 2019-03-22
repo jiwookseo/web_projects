@@ -31,21 +31,17 @@
             <div class="card my-4">
                 <!-- score form part -->
                 <div class="card-body">
-                    <form action="{% url 'movies:score_new' movie.id %}" method="POST"
+                    <form action="" method="POST"
                           class="form-row d-flex justify-content-between px-2">
                         {% csrf_token %}
+                        {% for field in form %}
+                            <div class="from-group">
+                                {{ field }}
+                            </div>
+                        {% endfor %}
                         <div class="from-group">
-                            <label for="score"> Enter your score </label>
-                            <input type="number" id="score" name="score" class="form-control" placeholder="Score"
-                                   min="0" max="10" step="1">
-                        </div>
-                        <div class="from-group">
-                            <label for="content"> and comment </label>
-                            <input type="text" id="content" name="content" class="form-control" placeholder="Comment">
-                        </div>
-                        <div class="from-group">
-                            <label for="submit" class=""> submit </label>
-                            <input type="submit" id="submit" value="submit" class="form-control btn btn-outline-dark">
+                            <input type="submit" id="submit" value="submit"
+                                   class="form-control btn btn-outline-dark my-1">
                         </div>
                     </form>
                 </div>
@@ -80,6 +76,5 @@
             </div>
 
         </div>
-    </div>
     </div>
 {% endblock %}

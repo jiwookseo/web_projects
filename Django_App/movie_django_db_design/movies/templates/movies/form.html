@@ -1,0 +1,23 @@
+{% extends 'movies/base.html' %}
+{% block title %}
+    {% if form.instance.id %}
+        Update Movie
+    {% else %}
+        New Movie
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div class="col-12 col-md-8">
+        {% if form.instance.id %}
+            <h2>Update Movie</h2>
+        {% else %}
+            <h2>New Movie</h2>
+        {% endif %}
+        <!-- movie form part -->
+        <form method="POST" class="mt-5">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-outline-dark d-flex ml-auto" value="submit">
+        </form>
+    </div>
+{% endblock %}

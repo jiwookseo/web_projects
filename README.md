@@ -15,59 +15,72 @@
 
 ## II. 목록
 
-### 1. Movie
+### 1. Todo App
 
-* Movie data scraping
+Django를 이용한 login, authentication, authorization 기능 구현
 
-  API, CSV data pracitce
+1:N relation database 를 이용한 `User` - `Todo` DB 및 Todo App 구현
 
-  네이버 영화 API와 영화진흥위원회 API를 사용한 데이터 수집 및 가공 / 영화 검색 및 박스오피스 기능 탑재  
-
-  * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/movie_data_scraping)
-
-  
-
-* Movie recommendation
-
-  CSV data, Bootstrap, CSS practice
-
-  csv 데이터를 기반으로 영화 추천 서비스를 위한 동적 웹페이지 구현
-
-  - [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/movie_recommendation)
-
-  
-
-* Movie information
-
-  ORM practice by Flask-SQLAlchemy
-
-  ORM을 통한 DB관리, 영화 정보 생성, 수정, 삭제, 출력, 정렬 서비스를 위한 동적 웹페이지 구현
-
-  * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/movie_information)
-
-
-
-- Movie by django
-
-  django practice
-
-  django web framework를 통한 웹페이지 구현
-
-  - [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Django_App/movie_django)
-
-  
-
-- Movie DB design by django
-
-  django practice
-
-  django web framework를 통한 1:N DB design 및 웹페이지 구현
-
-  - [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Django_App/movie_django_db_design)
+- [Go to repository](https://github.com/jiwookseo/web_projects/tree/master/Django_App/todo)
 
 ---
 
-### 2. Fake op.gg
+### 2. Movie
+
+* Django App
+  * Movie by django model form
+
+    django web framework를 통한 1:N DB design 및 웹페이지 구현
+
+    django model form을 이용한 data validation 및 db create, update 구현
+
+    - [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Django_App/movie_django_ModelForm)
+
+    
+
+  * Movie by django
+
+    django web framework를 통한 웹페이지 구현
+
+    * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Django_App/movie_django)
+
+  
+
+* Flask App
+
+  * Movie data scraping
+
+    API, CSV data pracitce
+
+    네이버 영화 API와 영화진흥위원회 API를 사용한 데이터 수집 및 가공 / 영화 검색 및 박스오피스 기능 탑재  
+
+    * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/movie_data_scraping)
+
+    
+
+  * Movie recommendation
+
+    CSV data, Bootstrap, CSS practice
+
+    csv 데이터를 기반으로 영화 추천 서비스를 위한 동적 웹페이지 구현
+
+    - [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/movie_recommendation)
+
+    
+
+  * Movie information
+
+    ORM practice by Flask-SQLAlchemy
+
+    ORM을 통한 DB관리, 영화 정보 생성, 수정, 삭제, 출력, 정렬 서비스를 위한 동적 웹페이지 구현
+
+    * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/movie_information)
+
+---
+
+### 3. Fake op.gg
+
+Flask App
 
 API, JSON data practice
 
@@ -77,7 +90,9 @@ Riot Games API를 통한 op.gg와 닮은 League of Legend 전적 검색 사이�
 
 ---
 
-### 3. E-commerce
+### 4. E-commerce
+
+Flask App
 
 CSS, Bootstrap practice
 
@@ -87,7 +102,9 @@ e-commerce 메인 페이지 구현
 
 ---
 
-### 4. Giphy
+### 5. Giphy
+
+Flask App
 
 API, Bootstrap practice
 
@@ -97,9 +114,27 @@ Giphy API를 이용한 GIF 검색 서비스, 스티커 트랜드 순위를 보�
 
 ---
 
-### 5. Simple Board
+### 6. Simple Board
 
-* Flask Version
+- Django App
+
+  - Django template, Bootstrap, CSS practice 
+
+    Django Web Framework를 이용한 templates 제작
+
+    - [Go to repository](https://github.com/jiwookseo/web_projects/tree/master/Django_App/django_templates)
+
+    
+
+  - Django practice
+
+    Django Web Framework를 이용한 board app, SNS app 제작
+
+    - [Go to repository](https://github.com/jiwookseo/web_projects/tree/master/Django_App/django_practice)
+
+    
+
+* Flask App
   * SQLite3 DB, Flask practice 
 
     간단한 게시판 페이지 구현, 게시글 작성 및 수정, 삭제 기능 탑재
@@ -123,34 +158,4 @@ Giphy API를 이용한 GIF 검색 서비스, 스티커 트랜드 순위를 보�
     위와 동일한 기능의 블로그를 ORM으로 제작.  
 
     * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/blog_by_orm)
-
-
-
-* Django Version
-
-  * Django template, Bootstrap, CSS practice 
-
-    Django Web Framework를 이용한 templates 제작
-
-    - [Go to repository](https://github.com/jiwookseo/web_projects/tree/master/Django_App/django_templates)
-
-    
-
-  * Django practice
-
-    Django Web Framework를 이용한 board app, SNS app 제작
-
-    - [Go to repository](https://github.com/jiwookseo/web_projects/tree/master/Django_App/django_practice)
-
----
-
-### 6. Todo App
-
-Django practice
-
-django를 이용한 login, authentication, authorization 기능 구현
-
-1:N relation database 를 이용한 `User` - `Todo` DB 및 Todo App 구현
-
-* [Go to repository](https://github.com/jiwookseo/web_projects/tree/master/Django_App/todo)
 

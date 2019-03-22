@@ -1,9 +1,10 @@
-# Django DB design Project
+# Django DB Seeding Project
 
 ## I. 목표
 
-* 데이터를 생성, 조회, 삭제, 수정할 수 있는 Web Application 제작
-* 데이터베이스 테이블간 관계 설정(1:N)
+- Seed Data를 활용한 DB 설계
+- Django ModelForm을 통한 validation 및 Create, Update
+- 유사한 코드를 최소화
 
 
 
@@ -16,6 +17,7 @@ $ tree -d
 .
 |-- movies
 |   |-- migrations
+|   |-- fixtures
 |   `-- templates
 |       `-- movies
 |-- project_07_db
@@ -24,27 +26,29 @@ $ tree -d
 
 
 
-### 2. DB model
+### 2. Forms
 
-`Genre`,` Movie`, `Score` 순으로 각각 1:N 관계를 갖는다.
+* `Movie` Model을 위한 `MovieModelForm` 작성
+
+* `Score` Model을 위한 `ScoreModelForm` 작성
 
 
 
-### 3. Templates
+### 3. Views
 
-* `base.html`  
+- `base.html`  
 
   레이아웃 html
 
-* `list.html`
+- `list.html`
 
   전체 Movie를 보여주는 template
 
-*  `detail.html` 
+- `detail.html` 
 
   `movie_id`를 받아 동적으로 해당하는 Movie의 정보, 유저평가를 보여주는 template
 
-*  `update.html`
+- `update.html`
 
   `movie_id `를 받아 동적으로 해당하는 Movie의 정보를 수정할 수 있는 template
 
@@ -52,130 +56,273 @@ $ tree -d
 
 ## III. 과정
 
-### 1. Model
+### 0. Seed data load
 
-```python
-class Genre(models.Model):
-    name = models.CharField(max_length=20, default='')
-# Genre model
+* `movies/fixtures` directory에 있는 seed data를 로드해준다.
 
-class Movie(models.Model):
-    title = models.CharField(max_length=30, default='')
-    audience = models.IntegerField(default=0)
-    poster_url = models.CharField(max_length=140, default='')
-    description = models.TextField(default='')
-    genre = models.ForeignKey(Genre, on_delete=models.PROTECT, default=None)
-# Genre object를 ForeignKey로 받는 Movie model
-
-class Score(models.Model):
-    content = models.CharField(max_length=140, default='')
-    score = models.IntegerField(default=0)
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, default=None)
-# Movie object를 ForeignKey로 받는 Score model
-```
-
-* 앞서 말한 내용처럼 `Genre` - `Movie` - `Score` 로 이어지는 1:N, 1:N 관계모델
+  ```bash
+  $ python manage.py loaddata genre.json
+  $ python manage.py loaddata movie.json
+  ```
 
 
 
-### 2. Urls
+### 1. Forms
 
-```python
-path('', views.movie_list, name="movie_list"),
-path('<int:movie_id>/', views.movie_detail, name="movie_detail"),
-path('<int:movie_id>/update/', views.movie_update, name="movie_update"),
-path('<int:movie_id>/delete/', views.movie_delete, name="movie_delete"),
-path('<int:movie_id>/scores/new', views.score_new, name="score_new"),
-path('<int:movie_id>/scores/<int:score_id>/delete', views.score_delete, name="score_delete"),
-```
-
-* index에서는 list template를 보여준다.
-
-* update 같은 경우에는 GET method는 수정 template, POST method는 객체 업데이트를 실행
-* score같은 경우에는 `movie_id`와 `score_id`를 모두 관리해야한다.
-
-
-
-### 3. Views
-
-```python
-def movie_delete(request, movie_id):
-    if request.method == 'POST':
-        
-def movie_update(request, movie_id):
-    if request.method == 'POST':
-        
-def score_new(request, movie_id):
-    if request.method == 'POST':
-        
-def score_delete(request, movie_id, score_id):
-    if request.method == 'POST':
-```
-
-* DB를 변경하는 위 코드들은 반드시 method가 POST인 경우에만 실행한다.
-
-  
-
-```python
-def movie_update(request, movie_id):
-    movie = Movie.objects.get(id=movie_id)
-    if request.method == 'POST':
-		# ......
-    else:
-        return render(request, 'movies/update.html', {'movie': movie, 'genres': Genre.objects.all()})
-```
-
-* 특별히 movie_update의 GET 요청에서는 `Genre.objects.all()` 을 인자로 넘겨준다.
-
-  업데이트 Template에서 해당하는 Genre set을 select box로 사용하기 위함
-
-
-
-### 4. Templates
-
-* `detail.html`
+* `MovieModelForm`
 
     ```python
-    <p class="card-text">{{ movie.description|linebreaks }}</p>
+    class MovieModelForm(forms.ModelForm):
+        class Meta:
+            model = Movie
+            fields = ['title', 'audience', 'poster_url', 'description', 'genre']
+            widgets = {
+                'title': forms.TextInput(
+                    attrs={
+                        'class': 'form-control',
+                        'placeholder': 'Enter Title'
+                    }
+                ),
+                'audience': forms.NumberInput(
+                    attrs={
+                        'class': 'form-control',
+                        'placeholder': 'Enter Audience'
+                    }
+                ),
+                'poster_url': forms.URLInput(
+                    attrs={
+                        'class': 'form-control',
+                        'placeholder': 'Enter Poster URL'
+                    }
+                ),
+                'description': forms.Textarea(
+                    attrs={
+                        'class': 'form-control',
+                        'rows': 7,
+                        'placeholder': 'Enter Description'
+                    }
+                ),
+                'genre': forms.Select(
+                    attrs={
+                        'class': 'form-control',
+                        'placeholder': 'Select Genre'
+                    }
+                ),
+            }
     ```
 
-    * `description` Field는 여러 줄의 문자를 담고 있는 `TextField` 이므로
+    * Bootstrap 클래스를 적용시키기 위해 widgets에 attributes를 추가해주었다.
 
-      `|linebreaks` 필터를 이용해 개행처리
+    * `Genre` ForeignKey는 Select box를 이용하고,
 
-
-
-* `update.html`
-
-    ```html
-    <textarea class="form-control" id="description" name="description" rows="3"
-    >{% for foo in movie.description.splitlines %}{{ foo }}
-    {% endfor %}</textarea>
-    <!-- splitlines를 이용한 textarea 개행처리 -->
-    ```
-
-    * `TextField`인  `description`은 `<textarea>` 를 이용해 출력했다.
-
-    * `|linebreaks` 필터를 이용한 방식은 `<p>` 와 `<br>` 를 이용한 방식이므로 tag 까지 그대로 출력하게 된다. 
-
-      따라서 `splitlines method`와 `Enter`입력으로 개행할 수 있도록 처리
+      `Genre` Model에 `__str__ ` function을 overwrite 해서 `self.name` 을 return하여 사용자가 쉽게 `Genre` 선택할 수 있도록 했다.
 
     
 
-    ```html
-    <select class="form-control" id="genre" name="genre">
-        {% for gerne in gernes %}
-        {% if gerne.id == movie.genre_id %}
-        <option value="{{ gerne.id }}" selected>{{ gerne.name }}</option>
-        {% else %}
-        <option value="{{ gerne.id }}">{{ gerne.name }}</option>
-        {% endif %}
-        {% endfor %}
-    </select>
-    <!-- for syntax 이용한 genre select box, if syntax 이용해 selected 처리 -->
+* `ScoreModelForm`
+
+    ```python
+    class ScoreModelForm(forms.ModelForm):
+        class Meta:
+            model = Score
+            fields = ['score', 'content', 'movie']
+            widgets = {
+                'score': forms.NumberInput(
+                    attrs={
+                        'class': 'form-control my-1',
+                        'placeholder': 'Score',
+                        'min': 0,
+                        'max': 10,
+                        'step': 1
+                    }
+                ),
+                'content': forms.TextInput(
+                    attrs={
+                        'class': 'form-control my-1',
+                        'placeholder': 'Content',
+                        'style': 'width: 280px'
+                    }
+                ),
+                'movie': forms.HiddenInput()
+            }
     ```
 
-    * `Genre` 선택을 위한 select box
-    * 인자로 받은 `Genre.objects.all()` 을 이용한다.
-    * 현재 `Movie.genre_id` 와 `forloop`의 `genre.id`를 비교해 `selected` 처리해 기본값을 설정
+    * `MovieModelForm` 과 동(同), Bootstrap 클래스를 적용시키기 위해 widgets에 attributes를 추가해주었다.
+    * `Movie` ForeignKey는 따로 입력받는 변수가 아니므로 `HiddenInput`을 사용한다.
 
+### 2. Views
+* `views.movie_new`
+
+    New form 과 create를 담당한다.
+
+    ```python
+    def movie_new(request):
+        if request.method == 'POST':
+            form = MovieModelForm(data=request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Successfully registered')
+                return redirect('movies:movie_detail', form.id)
+            else:
+                messages.success(request, 'Failed to register, check your input')
+        else:
+            form = MovieModelForm()
+        return render(request, 'movies/form.html', {'form': form})
+    ```
+
+    * `Method:GET` : form.html 을 render
+
+    * `Method:POST` : POST로 받은 데이터의 validation에 따라 message를 출력해준다.
+
+      만약 성공이라면 해당 영화의 디테일 페이지를 redirect
+
+      실패라면 입력된 데이터를 유지한채로 form.html을 render해준다.
+
+      * 이때 실패하는 경우는, 사용자가 악의적으로 form을 변경하는 등의 isuue
+
+      
+
+* `views.movie_update`
+
+    Edit form과 update를 담당한다.
+
+    ```python
+    def movie_update(request, movie_id):
+        movie = Movie.objects.get(id=movie_id)
+        if request.method == 'POST':
+            form = MovieModelForm(instance=movie, data=request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Successfully updated')
+                return redirect('movies:movie_detail', movie.id)
+            else:
+                messages.success(request, 'Failed to update, check your input')
+        else:
+            form = MovieModelForm(instance=movie)
+        return render(request, 'movies/form.html', {'form': form})
+    ```
+
+    - `Method:GET` : `instance`로 해당하는 `Movie`를 가진  form.html 을 render
+
+    - `Method:POST` : `views.movie_new`와 동(同)
+
+      
+
+* `views.movie_detail`
+
+    영화 디테일 페이지, 영화 상세정보와 1:N 관계로 등록된 `Score`를 출력해준다.
+
+    `Method:POST`를 통해 `Score` create도 겸한다.
+
+    ```python
+    def movie_detail(request, movie_id):
+        movie = Movie.objects.get(id=movie_id)
+        if request.method == 'POST':
+            form = ScoreModelForm(data=request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Successfully scored')
+            else:
+                messages.success(request, 'Failed to score, check your input')
+                return render(request, 'movies/detail.html', {'movie': movie, 'form': form})
+        form = ScoreModelForm(initial={'movie': movie})
+        return render(request, 'movies/detail.html', {'movie': movie, 'form': form})
+    ```
+
+    - `Method:GET` : `instance`로 해당하는 `Movie`를 가진  form.html 을 render
+
+    - `Method:POST` : `views.movie_new`, `views.movie_update`와 유사하지만,
+
+      앞서 말한 것 같이 ForeignKey로 `movie`를 가지고 있지만 입력을 받지 않는 HiddenInput이므로
+
+      form을 생성 할 때에 initial 인자로 `{'movie': movie}`를 넘겨주어 hidden value를 지정해준다.
+
+      
+
+### 3. Templates
+
+* `base.html`
+
+    ```html
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'movies:movie_list' %}">WookCha</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <!-- loginout -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'movies:movie_new' %}">New-Movie</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    ```
+
+    편리함을 위해 Navbar 단을 추가
+
+    ```html
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    ```
+
+    Navbar 하단에 Success, Fail Message를 출력할 수 있는 Alert 단 생성
+
+* `form.html`
+
+    ```html
+    {% extends 'movies/base.html' %}
+    {% block title %}
+        {% if form.instance.id %}
+            Update Movie
+        {% else %}
+            New Movie
+        {% endif %}
+    {% endblock %}
+    ```
+
+    New 와 Update로 모두 사용되므로, instance가 실제로 존재하는 `Movie`인지 분기를 나누어 Title을 출력한다.
+
+    ```html
+    <!-- movie form part -->
+    <form method="POST" class="mt-5">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-outline-dark d-flex ml-auto" value="submit">
+    </form>
+    ```
+
+    `form.as_p`를 사용해 form을 생성한다.
+
+* `detail.html`
+
+    ```html
+    <!-- score form part -->
+    <div class="card-body">
+        <form action="" method="POST"
+              class="form-row d-flex justify-content-between px-2">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="from-group">
+                {{ field }}
+            </div>
+            {% endfor %}
+            <div class="from-group">
+                <input type="submit" id="submit" value="submit"
+                       class="form-control btn btn-outline-dark my-1">
+            </div>
+        </form>
+    </div>
+    ```
+
+    score form은 form-row로 사용하기 위해서 field 단위로 for문을 돌려서 from-group으로 둘러싸주었다.
