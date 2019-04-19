@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load gravatar %}
+{% block body %}
+  <h2 class="mb-5">
+    {{ title }}
+  </h2>
+  <div class="row">
+    {% for person in people %}
+      <div class="card col-3 pt-3" style="width: 18rem;">
+        <a class="card-title" href="{% url 'accounts:detail' person.id %}">
+          <img src="{{ person.email|gravatar_url:100 }}" class="card-img-top"
+               alt="{{ person.username }}'s gravatar"></a>
+        <div class="card-body px-3 pt-2">
+          <h3>
+            <a class="card-title" href="{% url 'accounts:detail' person.id %}">{{ person.username }}</a>
+          </h3>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
