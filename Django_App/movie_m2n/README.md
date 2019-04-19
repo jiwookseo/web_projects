@@ -65,7 +65,7 @@
 
   1. `Users.html`
 
-      ![users template](doc/1.png)
+      ![users template](doc/1.PNG)
 
       `title` 과 `people` 을 인자로 받아서 제목과 해당 `User` 쿼리셋을 전달받아 출력해준다.
 
@@ -101,7 +101,7 @@
 
   2. `detail.html`
 
-      ![accounts detail template](doc/2.png)
+      ![accounts detail template](doc/2.PNG)
 
       프로필 페이지 template
 
@@ -149,13 +149,13 @@
 
   1. `list.html`
 
-     ![movie list template](doc/3.png)
+     ![movie list template](doc/3.PNG)
 
      * poster 이미지 클릭할 경우 detail 페이지로 갈 수 있도록 한다.
 
   2. `detail.html`
 
-     ![movie detail template](doc/4.png)
+     ![movie detail template](doc/4.PNG)
 
      * 영화 정보를 모두 보여준다.
      * 작성된 평점들을 총 개수, 평균 평점, 세부 목록을 출력해준다.
