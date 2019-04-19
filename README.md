@@ -28,6 +28,19 @@ Django를 이용한 login, authentication, authorization 기능 구현
 ### 2. Movie
 
 * Django App
+
+  * Movie by django M:N relate database
+
+    django web framework를 통한 M:N DB design
+
+    User - User follow 기능, 그를 통한 영화 추천 기능 구현
+
+    email hash를 통한 gravatar 활용
+
+    * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Django_App/movie_m2n)
+
+    
+
   * Movie by django model form
 
     django web framework를 통한 1:N DB design 및 웹페이지 구현
