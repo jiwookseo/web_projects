@@ -1,6 +1,6 @@
 # Web Projects
 
-[source code github repository](https://github.com/jiwookseo/web_projects) (private)
+[source code github repository](https://github.com/jiwookseo/web_projects)
 
 
 
