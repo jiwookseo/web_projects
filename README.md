@@ -10,6 +10,7 @@
 + ~~Flask, C9을 통한 실제 사용가능한 웹페이지 제작~~
 + Django Web Framework 마스터
 + CSS / Bootstrap 연습
++ JS, node.js 연습
 
 
 
@@ -117,13 +118,19 @@ e-commerce 메인 페이지 구현
 
 ### 5. Giphy
 
-Flask App
+* JS
 
-API, Bootstrap practice
+  JS의 ajax 통신을 통해서 페이지 리로드 없이 작동하는 Giphy 검색 서비스 구현
 
-Giphy API를 이용한 GIF 검색 서비스, 스티커 트랜드 순위를 보여주는 기능 탑재
+  [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/JS/giphy-search-engine)
 
-- [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/giphy)
+* Flask App
+
+  API, Bootstrap practice
+
+  Giphy API를 이용한 GIF 검색 서비스, 스티커 트랜드 순위를 보여주는 기능 탑재
+
+  * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Flask_App/giphy)
 
 ---
 
