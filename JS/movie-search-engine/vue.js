@@ -1,4 +1,4 @@
-const API_KEY = "8cbf9a48e626a47893155a2586713efc"
+﻿const API_KEY = "" // api key required
 const URL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
 const imgURL = 'http://image.tmdb.org/t/p/w200'
 
