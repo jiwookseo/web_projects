@@ -10,7 +10,7 @@
 + ~~Flask, C9을 통한 실제 사용가능한 웹페이지 제작~~
 + Django Web Framework 마스터
 + CSS / Bootstrap 연습
-+ JS, node.js 연습
++ JS, node.js, vue.js 연습
 
 
 
@@ -27,6 +27,18 @@ Django를 이용한 login, authentication, authorization 기능 구현
 ---
 
 ### 2. Movie
+
+* JS SPA
+
+  * Movie search engine
+
+    axios 를 이용한 API 사용
+
+    vue.js MVVM 패턴을 이용한 Single page application 구현
+
+    js 30 lines, index html 35 lines, style css 85 lines / 총 150 lines로 검색엔진을 구현할 수 있다.
+
+    * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/JS/movie-search-engine)
 
 * Django App
 
@@ -122,7 +134,7 @@ e-commerce 메인 페이지 구현
 
   JS의 ajax 통신을 통해서 페이지 리로드 없이 작동하는 Giphy 검색 서비스 구현
 
-  [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/JS/giphy-search-engine)
+  * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/JS/giphy-search-engine)
 
 * Flask App
 

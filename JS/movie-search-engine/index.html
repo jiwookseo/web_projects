@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <form id="main">
+        <div class="bar">
+            <input 
+                type="text"
+                v-model="searchString"
+                placeholder="Enter your search terms"
+            >
+        </div>
+        <ul>
+            <li v-for="movie in filteredMovies">
+                <img v-bind:src="movie.poster_path">
+                <p>{{ movie.title }}</p>
+            </li>
+            <li v-if="!filteredMovies.length">
+                <div>We couldn’t find any movies matching "{{ searchString }}"</div>
+            </li>
+        </ul>
+    </form>
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./vue.js"></script>
+</body>
+</html>
