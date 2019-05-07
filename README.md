@@ -40,7 +40,17 @@ Django를 이용한 login, authentication, authorization 기능 구현
 
     * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/JS/movie-search-engine)
 
+
+
 * Django App
+
+  * RESTful API server by django
+
+    django web framework를 통한 RESTful API server 구현
+
+    * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/Django_App/movie_restful_api)
+
+    
 
   * Movie by django M:N relate database
 
