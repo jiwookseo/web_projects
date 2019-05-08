@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="main">
+    <h1>Sticky Notes</h1>
+    <textarea v-model="content" @keydown.enter="writeMemo" v-focus></textarea>
+    <button @click="writeMemo">Write!</button>
+    <div id="memo-container">
+      <div class="memo" v-for="memo in memos">
+        <div class="memo-delete-button" @click="deleteMemo(memo.id)"></div>
+        {{ memo.content }}
+      </div>
+    </div>
+  </div>
+  <script>
+  const app = new Vue({
+    el: '#main',
+    data: {
+      url: 'http://127.0.0.1:8000/api/v1/memos/',
+      content: '',
+      memos: [],
+    },
+    methods: {
+      writeMemo: function () {
+        axios.post(this.url, {content: this.content})
+          .then(response => {
+            this.memos.push(response.data);
+            this.content = '';
+          });
+      },
+      deleteMemo: function (id) {
+        axios.delete(`${this.url}${id}/`);
+      },
+    },
+    created: function () {
+      axios.get(this.url)
+        .then(response => {
+          this.memos = response.data
+      });
+    },
+    directives: {
+      focus: {
+        inserted: function (el) {
+          el.focus();
+        }
+      }
+    },
+  })
+  </script>
+</body>
+</html>
