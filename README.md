@@ -28,16 +28,26 @@ Django를 이용한 login, authentication, authorization 기능 구현
 
 ### 2. Movie
 
-* JS SPA
+* Django & JS
 
+  * Django RESTful API & Vue SPA
+
+    django server 를 API 서버로 사용하는 Vue SPA
+
+    Vue 페이지를 통한 GET POST 등의 요청 구현
+
+    * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/JS/django-restapi-vue-spa)
+
+    
+  
   * Movie search engine
-
+  
     axios 를 이용한 API 사용
-
+  
     vue.js MVVM 패턴을 이용한 Single page application 구현
-
+  
     js 30 lines, index html 35 lines, style css 85 lines / 총 150 lines로 검색엔진을 구현할 수 있다.
-
+  
     * [Go to directory](https://github.com/jiwookseo/web_projects/tree/master/JS/movie-search-engine)
 
 

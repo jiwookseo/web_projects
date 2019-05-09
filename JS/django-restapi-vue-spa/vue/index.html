@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- vue -->
+  <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+  <!-- axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- Image and text -->
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" @click="reset">
+        <img src="https://png.pngtree.com/svg/20170306/d73bc1d29e.svg" width="30" height="30"
+          class="d-inline-block align-top" alt="">
+        Movie
+      </a>
+    </nav>
+    <!-- select box -->
+    <div class="row mt-2 justify-content-end" v-if="!check">
+      <div class="mr-3">
+        <select class="custom-select" v-model="selectedGenre">
+          <option disabled value="">Filter genre of movies</option>
+          <option v-for="genre in genres" v-bind:value="genre.id">{{ genre.name }}</option>
+        </select>
+      </div>
+      <div class="mr-4">
+        <button class="btn btn-outline-dark" @click="reset">reset</button>
+      </div>
+    </div>
+    <div class="container-fluid my-5">
+      <!-- movie list -->
+      <div class="row justify-content-center" v-if="!check">
+        <div class="card m-3" style="width: 18rem;" v-for="movie in movies">
+          <img v-bind:src="movie.poster_url" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{ movie.title }}</h5>
+            <button class="btn btn-primary" @click="selectMovie(movie)">Movie Detail</button>
+          </div>
+        </div>
+      </div>
+      <!-- movie detail -->
+      <div class="row justify-content-center" v-else>
+        <div class="card col-3 mx-4" style="width: 18rem;">
+          <img v-bind:src="selectedMovie.poster_url" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{ selectedMovie.title }}</h5>
+            <p class="card-text">{{ selectedMovie.description }}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">장르 : {{ genres[selectedMovie.genre - 1].name }}</li>
+            <li class="list-group-item">누적 관객 : {{ selectedMovie.audience }}명</li>
+            <li class="list-group-item"><button class="btn btn-primary" @click="showList">Show List</button>
+            </li>
+          </ul>
+        </div>
+        <div class="card col-7 mx-4 px-3">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="col-3 d-inline-block px-2">
+                Score : <input class='form-control' type="number" v-model="scoreInput">
+              </div>
+              <div class="col-6 d-inline-block px-2">
+                Comment : <input class='form-control' type="text" v-model="commentInput">
+              </div>
+              <div class="col-auto d-inline-block px-2">
+                <button class="btn btn-primary mb-1" @click="scoreSubmit(selectedMovie)">Submit</button>
+              </div>
+            </li>
+            <li class="list-group-item" v-if="selectedMovie.scores.length">
+              등록된 평점 : {{ selectedMovie.scores.length }}개 / 평균 평점 : {{ scoreAvg }}점
+            </li>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Score</th>
+                  <th scope="col">Comment</th>
+                </tr>
+              </thead>
+              <tbody v-if="selectedMovie.scores.length">
+                <tr v-for="(score, index) in selectedMovie.scores">
+                  <td>{{ score.score }}</td>
+                  <td>{{ score.content }}</td>
+                </tr>
+              </tbody>
+              <tbody v-else>
+                <tr>
+                  <td colspan="2">아직 등록된 평점이 없습니다. 평점을 등록해주세요.</td>
+                </tr>
+              </tbody>
+            </table>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        genres: [],
+        movies: [],
+        selectedMovie: {},
+        selectedGenre: '',
+        check: false,
+        scoreInput: '',
+        commentInput: '',
+        url: "https://insta-shine1225.c9users.io/api/v1/",
+      },
+      methods: {
+        selectMovie: function (movie) {
+          this.selectedMovie = movie;
+          this.check = true;
+        },
+        showList: function (movie) {
+          this.scoreInput = '';
+          this.commentInput = '';
+          this.check = false;
+        },
+        scoreSubmit: function (movie) {
+          axios.post(`${this.url}movies/${movie.id}/scores/`, {
+            content: this.commentInput,
+            score: this.scoreInput,
+            movie: movie.id,
+          }).then(res => {
+            this.selectedMovie.scores.unshift(res.data);
+            this.scoreInput = '';
+            this.commentInput = '';
+          }).then(res => {
+            axios.get(`${this.url}movies/`)
+              .then(res => this.movies = res.data)
+          });
+        },
+        reset: function () {
+          axios.get(`${this.url}movies/`)
+            .then(res => this.movies = res.data);
+          this.selectedGenre = '';
+          this.scoreInput = '';
+          this.commentInput = '';
+        }
+      },
+      created: function () {
+        axios.get(`${this.url}movies/`)
+          .then(res => this.movies = res.data);
+        axios.get(`${this.url}genres/`)
+          .then(res => this.genres = res.data);
+      },
+      computed: {
+        scoreAvg: function () {
+          let sum = 0
+          this.selectedMovie.scores.forEach(score => {
+            sum += score.score;
+          });
+          return sum / this.selectedMovie.scores.length
+        }
+      },
+      watch: {
+        selectedGenre: function () {
+          this.movies = this.genres[this.selectedGenre - 1].movies
+        },
+      },
+    })
+  </script>
+</body>
+
+</html>
